@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="display-4 text-center mt-4"> Crear o Actualizar Inmueble</h1>
+<br>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" action="{{ url_for('inmueble.update_inmueble', edit_id =edit_id) }}">
+                {% if inmueble.id %}
+                <input type="hidden" name="item_id" value="{{  inmueble.id  }}">
+                {% endif %}
+                <div class="container">
+                    <div class=" row my-3">
+                        <div class="col form-group">
+                            <label for="tipo"class="form-label">Tipo alquiler</label>
+                            <select class="form-select" id="tipo" name="tipo" aria-describedby="tipo">
+                            {% for item in rentalType %}
+                                <option value="{{  item  }}" {% if inmueble.tipo == item %} selected {% endif %}>
+                                    {{  item  }}                                     
+                                </option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-8">
+                            <label for="name" class="form-label">Nombre edificio</label>
+                            <input type="text" class="form-control" id="name"  name="name"  value= {{ inmueble.name |replace(' ', '&nbsp;') | safe }} aria-describedby="name" maxlength="50" required>
+                        </div>
+                        
+                        <div class="col form-group">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select class="form-select" id="estado" name="estado" aria-describedby="estado">
+                                {% for estado in estados %}
+                                <option value="{{  estado  }}" {% if inmueble.estado == estado %} selected {% endif %}>
+                                    {{  estado  }}                                     
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" row my-3">
+                        <div class="col-8">
+                            <label for="direccion" class="form-label">Dirección</label>
+                            <input type="text" class="form-control" id="direccion"  name="direccion"  value= {{ inmueble.direccion |replace(' ', '&nbsp;') | safe }} aria-describedby="direccion" maxlength="200" required>
+                        </div>
+                        <div class="col form-group">
+                            <label for="ciudad"class="form-label">Ciudad</label>
+                            <select class="form-select"  id="ciudad" name="ciudad" aria-describedby="ciudadexpedicion">
+                                {% for ciudad in ciudades %}
+                                    <option value="{{  ciudad  }}" {% if inmueble.ciudad == ciudad %} selected {% endif %}>
+                                        {{  ciudad  }}                                     
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>                        
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col">
+                            <label for="apartamento" class="form-label">Apartamento</label>
+                            <input type="number" class="form-control" id="apartamento" name="apartamento" value= {{ inmueble.apartamento }} aria-describedby="apartamento" required>
+                        </div>
+                        <div class="col">
+                            <label for="habitaciones" class="form-label"># Habitaciones</label>
+                            <input type="number" class="form-control" id="habitaciones" name="habitaciones" value= {{ inmueble.habitaciones }} aria-describedby="habitaciones" required>
+                        </div>
+                        <div class="col">
+                            <label for="bano" class="form-label"># baños</label>
+                            <input type="number" class="form-control" id="bano" name="bano" value= {{ inmueble.bano }} aria-describedby="bano" required>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            <label for="cod_gas" class="form-label">Código gas</label>
+                            <input type="number" class="form-control" id="cod_gas" name="cod_gas" value= {{ inmueble.cod_gas }} aria-describedby="cod_gas">
+                        </div>
+                        <div class="col">
+                            <label for="cod_luz" class="form-label">Código luz</label>
+                            <input type="number" class="form-control" id="cod_luz" name="cod_luz" value= {{ inmueble.cod_luz }} aria-describedby="cod_luz">
+                        </div>
+                        <div class="col">
+                            <label for="cod_agua" class="form-label">Código agua</label>
+                            <input type="number" class="form-control" id="cod_agua" name="cod_agua" value= {{ inmueble.cod_agua }} aria-describedby="cod_agua">
+                        </div>
+                    </div>
+                    
+                    <div class="row my-3">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" >Guardar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+               
+                
+                
+              </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

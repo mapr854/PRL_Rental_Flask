@@ -4,10 +4,11 @@ from utils.db_sqlite import db
 
 class Contrato(db.Model):
     id              = db.Column(db.Integer, primary_key = True)
-    contratType     = db.Column(db.String(15), nullable=False)
+    contractType     = db.Column(db.String(15), nullable=False)
     precio          = db.Column(db.Integer, nullable=False)
     administracion  = db.Column(db.Integer, nullable=False)
-    initialDate     = db.Column(db.DateTime, nullable=False)
+    startDate       = db.Column(db.DateTime, nullable=False)
+    endDate         = db.Column(db.DateTime, nullable=True)
     months          = db.Column(db.Integer, nullable=False)
     bono            = db.Column(db.Integer, nullable=False)
     poliza          = db.Column(db.String(50), nullable=False)
@@ -15,8 +16,9 @@ class Contrato(db.Model):
 
 
     # Relación con Inmueble
-    inmueble        = db.relationship('Inmueble', back_populates='contrato')
-
+    
+    inmueble_id = db.Column(db.Integer, db.ForeignKey('inmueble.id'))
+    inmueble        = db.relationship('Inmueble', back_populates='contratos')
 
     # Relación con Arrendador
     arrendador_id = db.Column(db.Integer, db.ForeignKey('arrendador.id'))
@@ -25,7 +27,7 @@ class Contrato(db.Model):
 
     # Relación con Arrendatario
     arrendatarios = db.relationship('Arrendatario', secondary='contrato_arrendatario', back_populates='contratos')
-
+    
 
     # Relación con Parqueaderos
     parqueaderos = db.relationship('Parqueadero', secondary='contrato_parqueadero', back_populates='contratos')

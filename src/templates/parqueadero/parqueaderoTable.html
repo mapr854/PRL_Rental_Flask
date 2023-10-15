@@ -9,7 +9,7 @@
         <form method="post" action="{{ url_for('parqueadero.search') }}">
             
                 <div class="input-group">
-                    <input type="text" class="form-control" name="search_term" placeholder="Search by Name, ID, or Apellido">
+                    <input type="text" class="form-control" name="search_term" placeholder="Buscar por placa o lugar">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary">
                             <span class="material-symbols-outlined">
@@ -42,12 +42,12 @@
                 {% for result in results %}
                     <tr>
                         <td>
-                            <a href="{{  url_for('parqueadero.edit_person', person_id=result.id)  }}" class="btn btn-primary btn-sm m-1">
+                            <a href="{{  url_for('parqueadero.edit_parqueadero', item_id=result.id)  }}" class="btn btn-primary btn-sm m-1">
                                 <span class="material-symbols-outlined">
                                     edit
                                 </span>
                             </a>
-                            <a href="{{  url_for('parqueadero.delete_person', person_id=result.id)  }}" class="btn btn-danger btn-sm m-1">
+                            <a href="{{  url_for('parqueadero.delete_parqueadero', item_id=result.id)  }}" class="btn btn-danger btn-sm m-1">
                                 <span class="material-symbols-outlined">
                                     delete
                                 </span>

@@ -3,6 +3,6 @@ venv/
 .env
 __pycache__/
 *.py[cod]
-
+database/rentalmanagment2.db
 .pytest_cache/
 

@@ -1,22 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="display-4 text-center mt-4"> Administrar Inmuebles</h1>
+<h1 class="display-4 text-center mt-4"> Administrar Contratos</h1>
 <br>
 
 <div class="container">
     <div class="mb-4">
-        <form method="post" action="{{ url_for('inmueble.search') }}">
+        <form method="post" action="{{ url_for('contrato.search') }}">
             
                 <div class="input-group">
-                    <input type="text" class="form-control" name="search_term" placeholder="Search by Name, ID, or Apellido">
+                    <input type="text" class="form-control" name="search_term" placeholder="Buscar por edificio, apartamento">
+                    <input type="text" class="form-control" name="contState" placeholder="Buscar Estado contrato">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary">
                             <span class="material-symbols-outlined">
                                search
                             </span>
                         </button>
-                        <a class="btn btn-success" href="{{ url_for('inmueble.create') }}" role="button">
+                        <a class="btn btn-success" href="{{ url_for('contrato.create') }}" role="button">
                             <span class="material-symbols-outlined">
                                 add
                             </span>
@@ -42,12 +43,12 @@
                 {% for result in results %}
                     <tr>
                         <td>
-                            <a href="{{  url_for('inmueble.edit_person', person_id=result.id)  }}" class="btn btn-primary btn-sm m-1">
+                            <a href="{{  url_for('contrato.edit_contrato', item_id=result.id)  }}" class="btn btn-primary btn-sm m-1">
                                 <span class="material-symbols-outlined">
                                     edit
                                 </span>
                             </a>
-                            <a href="{{  url_for('inmueble.delete_person', person_id=result.id)  }}" class="btn btn-danger btn-sm m-1">
+                            <a href="{{  url_for('contrato.delete_contrato', item_id=result.id)  }}" class="btn btn-danger btn-sm m-1">
                                 <span class="material-symbols-outlined">
                                     delete
                                 </span>
@@ -67,7 +68,7 @@
     <div class="card border-info my-3 mx-auto" style="max-width: 30rem;">
         <div class="card-header bg-info border-info">Información</div>
         <div class="card-body">
-        <p class="card-text">No hay Inmuebles por mostrar</p>
+        <p class="card-text">No hay Arrendatarios por mostrar</p>
         </div>
         
     </div>

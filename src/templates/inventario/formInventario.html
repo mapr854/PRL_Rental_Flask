@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="display-4 text-center mt-4"> Crear o Actualizar Arrendatarios</h1>
+<br>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" action="{{ url_for('inventario.update_inventario', edit_id =edit_id) }}">
+                {% if inventario.id %}
+                <input type="hidden" name="item_id" value="{{  inventario.id  }}">
+                {% endif %}
+                <div class="container">
+                    <div class=" row my-3">
+                        <div class="col form-group">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select class="form-select" id="estado" name="estado" aria-describedby="estado">
+                                {% for estado in estados %}
+                                <option value="{{  estado  }}" {% if inventario.estado == estado %} selected {% endif %}>
+                                    {{  estado  }}                                     
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-8">
+                            <label for="descripcion" class="form-label">Descripción</label>
+                            <input type="text" class="form-control" id="descripcion"  name="descripcion"  value= {{ inventario.descripcion |replace(' ', '&nbsp;') | safe }} aria-describedby="descripcion" maxlength="200" required>
+                        </div>
+
+                        <div class="col">
+                            <label for="valor" class="form-label">Valor</label>
+                            <input type="number" class="form-control" name="valor" value= {{ inventario.valor }} id="valor" aria-describedby="valor" required>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row my-3">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" >Guardar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+               
+                
+                
+              </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

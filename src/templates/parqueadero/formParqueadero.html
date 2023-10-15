@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="display-4 text-center mt-4"> Crear o Actualizar Parqueaderos</h1>
+<br>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" action="{{ url_for('parqueadero.update_parqueadero', edit_id =edit_id) }}">
+                {% if parqueadero.id %}
+                <input type="hidden" name="item_id" value="{{  parqueadero.id  }}">
+                {% endif %}
+                <div class="container">
+                    <div class=" row my-3">
+                        <div class="col form-group">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select class="form-select" id="estado" name="estado" aria-describedby="estado">
+                                {% for estado in estados %}
+                                <option value="{{  estado  }}" {% if parqueadero.estado == estado %} selected {% endif %}>
+                                    {{  estado  }}                                     
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="nplaca" class="form-label"># placa</label>
+                            <input type="text" class="form-control" id="nplaca"  name="nplaca"  value= {{ parqueadero.nplaca |replace(' ', '&nbsp;') | safe }} aria-describedby="nplaca" maxlength="6" required>
+                        </div>
+                        <div class="col">
+                            <label for="place" class="form-label">Lugar</label>
+                            <input type="number" class="form-control" name="place" value= {{ parqueadero.place }} id="place" aria-describedby="place" required>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row my-3">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" >Guardar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+               
+                
+                
+              </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

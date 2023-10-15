@@ -18,6 +18,10 @@ from models import Cities
 app.register_blueprint(admin_bp)
 app.register_blueprint(arrendador_bp,url_prefix='/arrendador')
 app.register_blueprint(arrendatario_bp,url_prefix='/arrendatario')
+app.register_blueprint(contrato_bp,url_prefix='/contrato')
+app.register_blueprint(inmueble_bp,url_prefix='/inmueble')
+app.register_blueprint(inventario_bp,url_prefix='/inventario')
+app.register_blueprint(parqueadero_bp,url_prefix='/parqueadero')
 
 
 db.configure_mappers()

@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="display-4 text-center mt-4"> Crear o Actualizar Arrendatarios</h1>
+<br>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" action="{{ url_for('contrato.update_contrato', edit_id =edit_id) }}">
+                {% if contrato.id %}
+                <input type="hidden" name="item_id" value="{{  contrato.id  }}">
+                {% endif %}
+                <div class="container">
+                    <div class=" row my-3">
+                        <div class="col form-group">
+                            <label for="contractType"class="form-label">Tipo contrato</label>
+                            <select class="form-select" id="contractType" name="contractType" aria-describedby="contractType">
+                            {% for item in rentalType %}
+                                <option value="{{  item  }}" {% if contrato.contractType == item %} selected {% endif %}>
+                                    {{  item  }}                                     
+                                </option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="months" class="form-label"># meses</label>
+                            <input type="number" class="form-control" name="months" value= {{ contrato.months }} id="months" aria-describedby="months" required>
+                        </div>
+                        <div class="col form-group">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select class="form-select" id="estado" name="estado" aria-describedby="estado">
+                                {% for estado in estados %}
+                                <option value="{{  estado  }}" {% if contrato.estado == estado %} selected {% endif %}>
+                                    {{  estado  }}                                     
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" row my-3">
+                        <div class="col">
+                            <label for="precio" class="form-label">Precio</label>
+                            <input type="number" class="form-control" id="precio" name="precio" value= {{ contrato.precio }} aria-describedby="precio" required>
+                        </div>
+                        <div class="col">
+                            <label for="administracion" class="form-label">Administracion</label>
+                            <input type="number" class="form-control" id="administracion" name="administracion" value= {{ contrato.administracion }} aria-describedby="administracion" required>
+                        </div>
+                    </div>
+                    <div class=" row my-3">
+                        <div class="col">
+                            <label for="startDate">Fecha Inicio:</label>
+                            <input type="date" name="startDate" value= {{ contrato.startDate |default('')  }} required>
+                        </div>
+                        <div class="col">
+                            <label for="endDate">Fecha Final:</label>
+                            <input type="date" name="endDate" value= {{ contrato.endDate |default('')  }} >
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            <label for="bono" class="form-label">Bono</label>
+                            <input type="number" class="form-control" id="bono" name="bono" value= {{ contrato.bono }} aria-describedby="bono" required>
+                        </div>
+                        <div class="col">
+                            <label for="poliza" class="form-label">Poliza</label>
+                            <input type="text" class="form-control" id="poliza"  name="poliza"  value= {{ contrato.poliza |replace(' ', '&nbsp;') | safe }} aria-describedby="poliza" maxlength="50" required>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="row my-3">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" >Guardar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+               
+                
+                
+              </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

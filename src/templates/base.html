@@ -24,9 +24,11 @@
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ url_for('arrendador.index') }}">Arrendador</a></li>
                         <li><a class="dropdown-item" href="{{ url_for('arrendatario.index') }}">Arrendatario</a></li>
-                        <li><a class="dropdown-item" href="#">Inventario</a></li>
-                        <li><a class="dropdown-item" href="#">Parqueadero</a></li>
-                        <li><a class="dropdown-item" href="#">Inmuebles</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('contrato.index') }}">Contratos</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('inmueble.index') }}">Inmuebles</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('inventario.index') }}">Inventario</a></li>
+                        <li><a class="dropdown-item" href="{{ url_for('parqueadero.index') }}">Parqueaderos</a></li>
+                        
                       </ul>
                 </li>
                 <li class="nav-item dropdown">

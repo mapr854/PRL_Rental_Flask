@@ -45,4 +45,5 @@ class CityPicklist():
 
 tipoIdList = ['CC', 'CE', 'NIT','Pasaporte']
 estadoList =[ 'A', 'I']
+estadoInmuebleList =[ 'D', 'O', 'I']
 tipoAlquilerList=[ 'Apartamento','Habitación', 'Local']
