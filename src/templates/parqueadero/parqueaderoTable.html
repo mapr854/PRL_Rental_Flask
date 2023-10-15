@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="display-4 text-center mt-4"> Administrar Parqueadero</h1>
+<br>
+
+<div class="container">
+    <div class="mb-4">
+        <form method="post" action="{{ url_for('parqueadero.search') }}">
+            
+                <div class="input-group">
+                    <input type="text" class="form-control" name="search_term" placeholder="Search by Name, ID, or Apellido">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-primary">
+                            <span class="material-symbols-outlined">
+                               search
+                            </span>
+                        </button>
+                        <a class="btn btn-success" href="{{ url_for('parqueadero.create') }}" role="button">
+                            <span class="material-symbols-outlined">
+                                add
+                            </span>
+                        </a>
+                    </div>
+                </div>  
+    </div>
+    {% if results%}
+    <div class="table-container">
+        <table class="table table-hover table-bordered border-primary">
+            <thead>
+            <tr>
+                <th>
+                    acciones
+                </th>
+                {% for column in results[0].__table__.columns.keys() %}
+                <th>{{ column }}</th>
+                {% endfor %}
+                
+            </tr>
+            </thead>
+            <tbody>
+                {% for result in results %}
+                    <tr>
+                        <td>
+                            <a href="{{  url_for('parqueadero.edit_person', person_id=result.id)  }}" class="btn btn-primary btn-sm m-1">
+                                <span class="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </a>
+                            <a href="{{  url_for('parqueadero.delete_person', person_id=result.id)  }}" class="btn btn-danger btn-sm m-1">
+                                <span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </a>
+                        </td>
+                        {% for column in results[0].__table__.columns.keys() %}
+                            <td>{{  result[column]  }}</td>
+                        {% endfor %}
+                        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+    {% else %}
+    <div class="card border-info my-3 mx-auto" style="max-width: 30rem;">
+        <div class="card-header bg-info border-info">Información</div>
+        <div class="card-body">
+        <p class="card-text">No hay parqueaderos por mostrar</p>
+        </div>
+        
+    </div>
+
+    {% endif  %}
+</div>
+
+{% endblock %}

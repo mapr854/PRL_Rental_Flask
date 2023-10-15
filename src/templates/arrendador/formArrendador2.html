@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="display-4 text-center mt-4"> Crear o Actualizar Arrendadores</h1>
+<br>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" action="{{  url_for('arrendador.add_person') }}">
+                
+                {{   form.hidden_tag()  }}
+                <div class="container">
+                    <div class=" row my-3">
+                        <div class=" col form-group">
+                            {{   form.tipoid.label(class="form-control-label")  }}
+                            {{   form.tipoid(class="form-control")  }}
+                            {% if form.tipoid.errors %}
+                                <div class="alert alert-danger">
+                                    {{   form.tipoid.errors[0]  }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class=" col-8 form-group">
+                            {{   form.idnumber.label(class="form-control-label")  }}
+                            {{   form.idnumber(class="form-control")  }}
+                            {% if form.idnumber.errors %}
+                                <div class="alert alert-danger">
+                                    {{   form.idnumber.errors[0]  }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class=" col form-group">
+                            {{   form.estado.label(class="form-control-label")  }}
+                            {{   form.estado(class="form-control")  }}
+                            {% if form.estado.errors %}
+                                <div class="alert alert-danger">
+                                    {{   form.estado.errors[0]  }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    </div>
+                    <div class=" row my-3">
+                        <div class=" col form-group">
+                            {{   form.nombres.label(class="form-control-label")  }}
+                            {{   form.nombres(class="form-control")  }}
+                            {% if form.nombres.errors %}
+                                <div class="alert alert-danger">
+                                    {{   form.nombres.errors[0]  }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class=" col form-group">
+                            {{   form.apellidos.label(class="form-control-label")  }}
+                            {{   form.apellidos(class="form-control")  }}
+                            {% if form.apellidos.errors %}
+                                <div class="alert alert-danger">
+                                    {{   form.apellidos.errors[0]  }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class=" col-8 form-group">
+                            {{   form.email.label(class="form-control-label")  }}
+                            {{   form.email(class="form-control")  }}
+                            {% if form.email.errors %}
+                                <div class="alert alert-danger">
+                                    {{   form.email.errors[0]  }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class=" col-4 form-group">
+                            {{   form.movil.label(class="form-control-label")  }}
+                            {{   form.movil(class="form-control")  }}
+                            {% if form.movil.errors %}
+                                <div class="alert alert-danger">
+                                    {{   form.movil.errors[0]  }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class=" col form-group">
+                            {{   form.ciudad_exp.label(class="form-control-label")  }}
+                            {{   form.ciudad_exp(class="form-control")  }}
+                            {% if form.ciudad_exp.errors %}
+                                <div class="alert alert-danger">
+                                    {{   form.ciudad_exp.errors[0]  }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class=" col form-group">
+                            {{   form.provincia_exp.label(class="form-control-label")  }}
+                            {{   form.provincia_exp(class="form-control")  }}
+                            {% if form.provincia_exp.errors %}
+                                <div class="alert alert-danger">
+                                    {{   form.provincia_exp.errors[0]  }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class=" col form-group">
+                            {{   form.pais_exp.label(class="form-control-label")  }}
+                            {{   form.pais_exp(class="form-control")  }}
+                            {% if form.pais_exp.errors %}
+                                <div class="alert alert-danger">
+                                    {{   form.pais_exp.errors[0]  }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                    <div></div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col form-group">
+                            {{   form.submit(class="btn btn-primary")  }}
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+               
+                
+                
+              </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

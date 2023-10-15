@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1> Edificio Plata Ruiz</h1>
+{% if dfSummary is not none %}
+<table class="table table-hover table-bordered border-primary">
+    <thead>
+      <tr>
+        {% for column in dfSummary.columns %}
+        <th>{{column}}</th>
+        {% endfor %}
+      </tr>
+    </thead>
+    <tbody>
+        {% for index, row in dfSummary.iterrows() %}
+        <tr>
+            {% for column in dfSummary.columns %}
+            <td>{{ row[column]}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </tbody>
+  </table>
+{% else %}
+<div class="card border-info mb-3" style="max-width: 18rem;">
+    <div class="card-header bg-info border-info">Información</div>
+    <div class="card-body">
+      <p class="card-text">No hay inmuebles por administar</p>
+    </div>
+  </div>
+
+{% endif  %}
+
+{% endblock %}

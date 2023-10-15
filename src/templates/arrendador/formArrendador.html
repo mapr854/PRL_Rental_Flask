@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="display-4 text-center mt-4"> Crear o Actualizar Arrendadores</h1>
+<br>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" action="{{  url_for('arrendador.update_person', edit_id =edit_id) }}">
+                {% if arrendador.id %}
+                <input type="hidden" name="person_id" value="{{   arrendador.id  }}">
+                {% endif %}
+                <div class="container">
+                    <div class=" row my-3">
+                        <div class="col form-group">
+                            <label for="tipoid"class="form-label">Tipo_id</label>
+                            <select class="form-select" id="tipoid" name="tipoid" aria-describedby="tipoid">
+                            {% for item in idsType %}
+                                <option value="{{   item  }}" {% if arrendador.tipoid == item %} selected {% endif %}>
+                                    {{   item  }}                                     
+                                </option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-8">
+                            <label for="idnumber" class="form-label">Número ID</label>
+                            <input type="number" class="form-control" name="idnumber" value= {{  arrendador.idnumber }} id="idnumber" aria-describedby="idnumber" required>
+                        </div>
+                        <div class="col form-group">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select class="form-select" id="estado" name="estado" aria-describedby="estado">
+                                {% for estado in estados %}
+                                <option value="{{   estado  }}" {% if arrendador.estado == estado %} selected {% endif %}>
+                                    {{   estado  }}                                     
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" row my-3">
+                        <div class="col">
+                            <label for="nombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" id="nombres"  name="nombres"  value= {{  arrendador.nombres |replace(' ', '&nbsp;') | safe }} aria-describedby="nombres" maxlength="100" required>
+                        </div>
+                        <div class="col">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" name='apellidos' value= {{ arrendador.apellidos |replace(' ', '&nbsp;') | safe }} maxlength="100" id="apellidos" aria-describedby="apellidos" required>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-8">
+                            <label for="email" class="form-label">email</label>
+                            <input type="email" class="form-control" id="email"  name="email" value= {{  arrendador.email }} maxlength="100"aria-describedby="email" reuired>
+                        </div>
+                        <div class="col-4">
+                            <label for="movil" class="form-label">Móvil</label>
+                            <input type="number" class="form-control" id="movil" name="movil" value= {{  arrendador.movil }} aria-describedby="movil" required>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                    <div class="col form-group">
+                        <label for="ciudad_exp"class="form-label">Ciudad Expedición ID</label>
+                        <select class="form-select"  id="ciudad_exp" name="ciudad_exp" aria-describedby="ciudadexpedicion">
+                            {% for ciudad in ciudades %}
+                                <option value="{{   ciudad  }}" {% if arrendador.ciudad_exp == ciudad %} selected {% endif %}>
+                                    {{   ciudad  }}                                     
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col form-group">
+                        <label for="provincia_exp"class="form-label">Departamento Expedición</label>
+                        <select class="form-select" id="provincia_exp" name="provincia_exp" aria-describedby="provincia expedicion">
+                            {% for provincia in provincias %}
+                                <option value="{{   provincia  }}" {% if arrendador.provincia_exp == provincia %} selected {% endif %}>
+                                    {{   provincia  }}                                     
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col form-group">
+                        <label for="pais_exp" class="form-label">País Expedición</label>
+                        <select class="form-select" id="pais_exp" name="pais_exp" aria-describedby="pais expedicion">
+                            {% for pais in paises %}
+                                <option value="{{   pais  }}" {% if arrendador.pais_exp == pais %} selected {% endif %}>
+                                    {{   pais  }}                                     
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div></div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" >Guardar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+               
+                
+                
+              </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

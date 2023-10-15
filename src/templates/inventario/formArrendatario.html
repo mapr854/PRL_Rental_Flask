@@ -1,0 +1,135 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="display-4 text-center mt-4"> Crear o Actualizar Arrendatarios</h1>
+<br>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <form method="post" action="{{ url_for('arrendatario.update_person', edit_id =edit_id) }}">
+                {% if arrendatario.id %}
+                <input type="hidden" name="person_id" value="{{  arrendatario.id  }}">
+                {% endif %}
+                <div class="container">
+                    <div class=" row my-3">
+                        <div class="col form-group">
+                            <label for="tipoid"class="form-label">Tipo_id</label>
+                            <select class="form-select" id="tipoid" name="tipoid" aria-describedby="tipoid">
+                            {% for item in idsType %}
+                                <option value="{{  item  }}" {% if arrendatario.tipoid == item %} selected {% endif %}>
+                                    {{  item  }}                                     
+                                </option>
+                            {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col-8">
+                            <label for="idnumber" class="form-label">Número ID</label>
+                            <input type="number" class="form-control" name="idnumber" value= {{ arrendatario.idnumber }} id="idnumber" aria-describedby="idnumber" required>
+                        </div>
+                        <div class="col form-group">
+                            <label for="estado" class="form-label">Estado</label>
+                            <select class="form-select" id="estado" name="estado" aria-describedby="estado">
+                                {% for estado in estados %}
+                                <option value="{{  estado  }}" {% if arrendatario.estado == estado %} selected {% endif %}>
+                                    {{  estado  }}                                     
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" row my-3">
+                        <div class="col">
+                            <label for="nombres" class="form-label">Nombres</label>
+                            <input type="text" class="form-control" id="nombres"  name="nombres"  value= {{ arrendatario.nombres |replace(' ', '&nbsp;') | safe }} aria-describedby="nombres" maxlength="100" required>
+                        </div>
+                        <div class="col">
+                            <label for="apellidos" class="form-label">Apellidos</label>
+                            <input type="text" class="form-control" name='apellidos' value= {{ arrendatario.apellidos |replace(' ', '&nbsp;') | safe }} maxlength="100" id="apellidos" aria-describedby="apellidos" required>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-8">
+                            <label for="email" class="form-label">email</label>
+                            <input type="email" class="form-control" id="email"  name="email" value= {{ arrendatario.email }} maxlength="100"aria-describedby="email" reuired>
+                        </div>
+                        <div class="col-4">
+                            <label for="movil" class="form-label">Móvil</label>
+                            <input type="number" class="form-control" id="movil" name="movil" value= {{ arrendatario.movil }} aria-describedby="movil" required>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            <label for="profesion" class="form-label">Profesión</label>
+                            <input type="text" class="form-control" id="profesion"  name="profesion" value= {{ arrendatario.profesion |replace(' ', '&nbsp;') | safe }} maxlength="100"aria-describedby="profesion">
+                        </div>
+                        
+                    </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            <label for="fechaNacimiento">Fecha Nacimiento:</label>
+                            <input type="date" name="fechaNacimiento" value= {{ arrendatario.fechaNacimiento |default('')  }} required>
+                        </div>
+                        <div class="col form-group">
+                            <label for="ciudad_exp"class="form-label">Ciudad Expedición ID</label>
+                            <select class="form-select"  id="ciudad_exp" name="ciudad_exp" aria-describedby="ciudadexpedicion">
+                                {% for ciudad in ciudades %}
+                                    <option value="{{  ciudad  }}" {% if arrendatario.ciudad_exp == ciudad %} selected {% endif %}>
+                                        {{  ciudad  }}                                     
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    
+                    </div>
+                    <div class="row my-3">
+                        <div class="col form-group">
+                            <label for="provincia_exp"class="form-label">Departamento Expedición</label>
+                            <select class="form-select" id="provincia_exp" name="provincia_exp" aria-describedby="provincia expedicion">
+                                {% for provincia in provincias %}
+                                    <option value="{{  provincia  }}" {% if arrendatario.provincia_exp == provincia %} selected {% endif %}>
+                                        {{  provincia  }}                                     
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col form-group">
+                            <label for="pais_exp" class="form-label">País Expedición</label>
+                            <select class="form-select" id="pais_exp" name="pais_exp" aria-describedby="pais expedicion">
+                                {% for pais in paises %}
+                                    <option value="{{  pais  }}" {% if arrendatario.pais_exp == pais %} selected {% endif %}>
+                                        {{  pais  }}                                     
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col-8">
+                            <label for="nombreContacto" class="form-label">Nombre de Contacto</label>
+                            <input type="text" class="form-control" id="nombreContacto"  name="nombreContacto" value= {{  arrendatario.nombreContacto |replace(' ', '&nbsp;') | safe  }} maxlength="100" aria-describedby="nombreContacto">
+                        </div>
+                        <div class="col-4">
+                            <label for="movilContacto" class="form-label">Móvil</label>
+                            <input type="number" class="form-control" id="movilContacto" name="movilContacto" value= {{  arrendatario.movilContacto  }} aria-describedby="movilContacto">
+                        </div>
+                    </div>
+                    <div class="row my-3">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary" >Guardar</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                </div>
+               
+                
+                
+              </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
