@@ -7,6 +7,5 @@ class Inmueble(db.Model):
     ciudad          = db.Column(db.String(50), nullable=False)
     tipo            = db.Column(db.String(15), nullable=False)
     habitaciones    = db.Column(db.Integer, nullable=False)
-    contrato_id     = db.Column(db.Integer, db.ForeignKey('contrato.key_id'))
-    contrato        = db.relationship('Contrato', back_populates='inmueble')
+    contratos        = db.relationship('Contrato', back_populates='inmueble')
     

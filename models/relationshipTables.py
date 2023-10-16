@@ -16,12 +16,6 @@ contrato_parqueadero = db.Table('contrato_parqueadero',
 )
 
 
-# Tabla intermedia para la relación muchos a muchos entre Contrato y ElementoInventario
-elemento_contrato = db.Table('elemento_contrato',
-    db.Column('inventario_id', db.Integer, db.ForeignKey('inventario.key_id')),
-    db.Column('contrato_id', db.Integer, db.ForeignKey('contrato.key_id')),
-    db.Column('cantidad', db.Integer)  # Agregar la cantidad de elementos en el contrato
-)
 
 # Tabla intermedia para la relación muchos a muchos entre Contrato y Pagos
 contrato_pagos = db.Table('contrato_pagos',

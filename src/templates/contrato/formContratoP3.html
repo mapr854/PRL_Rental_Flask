@@ -5,21 +5,25 @@
 
 <div class="container">
     <div class="mb-4">
-        <form method="post" action="{{ url_for('contrato.add_arrendatario',nuevo_id = nuevo_id) }}">
+        <form method="post" action="{{ url_for('contrato.add_inventario',nuevo_id = nuevo_id) }}">
             
                 <div class="row my-3">
                     <div class="col">
-                        <label for="arrendatario_id" class="form-label">Arrendatario</label>
+                        <label for="inventario_id" class="form-label">Inventario</label>
                     </div>
                     <div class="col-8">
-                        <select class="form-select" id="arrendatario_id" name="arrendatario_id" aria-describedby="arrendatario_id" placeholder="seleccione arrendatario">
-                            <option selected>seleccione arrendatario</option>
-                            {% for person in arrendatarioList %}
-                            <option value="{{  person.id  }}">
-                                {{  person.idnumber  }}  - {{person.nombres}} {{person.apellidos}}                                   
+                        <select class="form-select" id="inventario_id" name="inventario_id" aria-describedby="inventario_id" placeholder="seleccione inventario">
+                            <option selected>seleccione inventario</option>
+                            {% for iteminv in inventarioList %}
+                            <option value="{{  iteminv.id  }}">
+                                {{  iteminv.descripcion  }}                                  
                             </option>
                             {% endfor %}
                         </select>
+                    </div>
+                    <div class="col">
+                        <label for="cantidad" class="form-label">Cantidad</label>
+                        <input type="number" class="form-control" id="cantidad" name="cantidad"  aria-describedby="cantidad" required>
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-primary">
@@ -33,7 +37,7 @@
             </form> 
         </div>  
     </div>
-    {% if contrato.arrendatarios%}
+    {% if contrato.elementos%}
     <div class="table-container">
         <table class="table table-hover table-bordered border-primary">
             <thead>
@@ -42,29 +46,29 @@
                     acciones
                 </th>
                 <th>
-                    # Identificación
+                    # Descripción
                 </th>
                 <th>
-                    Nombre Completo
+                    Cantidad
                 </th>
                 
             </tr>
             </thead>
             <tbody>
-                {% for result in contrato.arrendatarios %}
+                {% for result in contrato.elementos %}
                     <tr>
                         <td>
-                            <a href="{{  url_for('contrato.delete_arrendatario',nuevo_id = nuevo_id, item_id = result.id)  }}" class="btn btn-danger btn-sm m-1">
+                            <a href="{{  url_for('contrato.delete_inventario',nuevo_id = nuevo_id, item_id = result.id)  }}" class="btn btn-danger btn-sm m-1">
                                 <span class="material-symbols-outlined">
                                     delete
                                 </span>
                             </a>
                         </td>
                         <td>
-                            {{result.idnumber}}
+                            {{result.descripcion}}
                         </td>
                         <td>
-                            {{result.nombres}} {{result.apellidos}}
+                            {{result.cantidad}}
                         </td>
                         
                     </tr>
@@ -72,13 +76,13 @@
             </tbody>
         </table>
     </div>
+    
+    {% endif  %}
     <div class=" my-3">
-        <a class="btn btn-primary" href="{{ url_for('contrato.edit_contrato3', item_id = nuevo_id) }}" role="button">
+        <a class="btn btn-primary" href="{{ url_for('contrato.edit_contrato4', item_id=nuevo_id) }}" role="button">
             Siguiente
         </a>
     </div>
-    {% endif  %}
-
 
 
 </div>

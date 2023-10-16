@@ -1,7 +1,6 @@
 from utils.db_sqlite import db
 
 
-
 class Contrato(db.Model):
     id              = db.Column(db.Integer, primary_key = True)
     contractType     = db.Column(db.String(15), nullable=False)
@@ -34,7 +33,9 @@ class Contrato(db.Model):
 
 
     # Relación con Elementos de Inventario
-    elementos_contrato = db.relationship('ElementoContrato', back_populates='contrato')
+   
+    elementos = db.relationship('ElementosContrato', back_populates='contrato')
+
 
     # Relación con Pagos
     pagos = db.relationship('Pagos', secondary='contrato_pagos', back_populates='contratos', lazy='dynamic')

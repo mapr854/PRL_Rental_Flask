@@ -9,7 +9,7 @@
         <form method="post" action="{{ url_for('arrendador.search') }}">
             
                 <div class="input-group">
-                    <input type="text" class="form-control" name="search_term" placeholder="Search by Name, ID, or Apellido">
+                    <input type="text" class="form-control" name="search_term" placeholder="Buscar por ID, or Apellido">
                     <div class="input-group-append">
                         <button type="submit" class="btn btn-primary">
                             <span class="material-symbols-outlined">
@@ -22,7 +22,8 @@
                             </span>
                         </a>
                     </div>
-                </div>  
+                </div> 
+        </form>     
     </div>
     {% if results%}
     <div class="table-container">

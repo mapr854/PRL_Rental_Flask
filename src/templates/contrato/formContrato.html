@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="display-4 text-center mt-4"> Crear o Actualizar Arrendatarios</h1>
+<h1 class="display-4 text-center mt-4"> Crear o Actualizar Contratos</h1>
 <br>
 
 <div class="container">
@@ -69,12 +69,35 @@
                         </div>
                         
                     </div>
+                    <div class="row my-3">
+                        <div class="col form-group">
+                            <label for="arrendador_id" class="form-label">Id Arrendador</label>
+                            <select class="form-select" id="arrendador_id" name="arrendador_id" aria-describedby="arrendador_id">
+                                {% for person in arrendadorList %}
+                                <option value="{{  person.id  }}" {% if contrato.arrendador_id == person.id %} selected {% endif %}>
+                                    {{  person.idnumber  }}  - {{person.nombres}} {{person.apellidos}}                                   
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="col form-group">
+                            <label for="inmueble_id" class="form-label">Inmueble</label>
+                            <select class="form-select" id="inmueble_id" name="inmueble_id" aria-describedby="inmueble_id">
+                                {% for inm in inmuebleList %}
+                                <option value="{{  inm.id  }}" {% if contrato.inmueble_id == inm.id %} selected {% endif %}>
+                                    
+                                    {{inm.tipo }} : {{inm.name}} - {{inm.apartamento}} . {{inm.habitaciones}} 
+                                                                      
+                                </option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
                     
                     <div class="row my-3">
                         <div class="col">
-                            <button type="submit" class="btn btn-primary" >Guardar</button>
+                            <button type="submit" class="btn btn-primary" >Siguiente</button>
                         </div>
-                        
                     </div>
                 </div>
                 </div>

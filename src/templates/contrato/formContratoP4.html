@@ -5,18 +5,18 @@
 
 <div class="container">
     <div class="mb-4">
-        <form method="post" action="{{ url_for('contrato.add_arrendatario',nuevo_id = nuevo_id) }}">
+        <form method="post" action="{{ url_for('contrato.add_parqueadero',nuevo_id = nuevo_id) }}">
             
                 <div class="row my-3">
                     <div class="col">
-                        <label for="arrendatario_id" class="form-label">Arrendatario</label>
+                        <label for="parqueadero_id" class="form-label">Arrendatario</label>
                     </div>
                     <div class="col-8">
-                        <select class="form-select" id="arrendatario_id" name="arrendatario_id" aria-describedby="arrendatario_id" placeholder="seleccione arrendatario">
-                            <option selected>seleccione arrendatario</option>
-                            {% for person in arrendatarioList %}
-                            <option value="{{  person.id  }}">
-                                {{  person.idnumber  }}  - {{person.nombres}} {{person.apellidos}}                                   
+                        <select class="form-select" id="parqueadero_id" name="parqueadero_id" aria-describedby="parqueadero_id" placeholder="seleccione parqueadero">
+                            <option selected>seleccione parqueadero</option>
+                            {% for itempark in parqueaderoList %}
+                            <option value="{{  itempark.id  }}">
+                                {{  itempark.nplaca  }}  - lugar: {{itempark.place}}                                   
                             </option>
                             {% endfor %}
                         </select>
@@ -33,7 +33,7 @@
             </form> 
         </div>  
     </div>
-    {% if contrato.arrendatarios%}
+    {% if contrato.parqueaderos%}
     <div class="table-container">
         <table class="table table-hover table-bordered border-primary">
             <thead>
@@ -42,29 +42,29 @@
                     acciones
                 </th>
                 <th>
-                    # Identificación
+                    Lugar
                 </th>
                 <th>
-                    Nombre Completo
+                    # placa
                 </th>
                 
             </tr>
             </thead>
             <tbody>
-                {% for result in contrato.arrendatarios %}
+                {% for result in contrato.parqueaderos %}
                     <tr>
                         <td>
-                            <a href="{{  url_for('contrato.delete_arrendatario',nuevo_id = nuevo_id, item_id = result.id)  }}" class="btn btn-danger btn-sm m-1">
+                            <a href="{{  url_for('contrato.delete_parqueadero',nuevo_id = nuevo_id, item_id = result.id)  }}" class="btn btn-danger btn-sm m-1">
                                 <span class="material-symbols-outlined">
                                     delete
                                 </span>
                             </a>
                         </td>
                         <td>
-                            {{result.idnumber}}
+                            {{result.place}}
                         </td>
                         <td>
-                            {{result.nombres}} {{result.apellidos}}
+                            {{result.nplaca}} 
                         </td>
                         
                     </tr>
@@ -72,13 +72,13 @@
             </tbody>
         </table>
     </div>
+    
+    {% endif  %}
     <div class=" my-3">
-        <a class="btn btn-primary" href="{{ url_for('contrato.edit_contrato3', item_id = nuevo_id) }}" role="button">
+        <a class="btn btn-primary" href="{{ url_for('contrato.index') }}" role="button">
             Siguiente
         </a>
     </div>
-    {% endif  %}
-
 
 
 </div>
